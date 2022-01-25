@@ -1,30 +1,29 @@
 package br.com.alura.loja.modelo;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 @Entity
-@Table(name = "catrgorias")
+@Table(name = "categorias")
 public class Categoria {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
+	@EmbeddedId
+	private CategoriaId categoriaId;
 
-    public Categoria(String nome) {
-        this.nome = nome;
-    }
+	public Categoria() {
+	}
+
+	public Categoria(String nome) {
+		this.categoriaId = new CategoriaId(nome, "Teste");
+	}
+
+	public CategoriaId getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(CategoriaId categoriaId) {
+		this.categoriaId = categoriaId;
+	}
 }
