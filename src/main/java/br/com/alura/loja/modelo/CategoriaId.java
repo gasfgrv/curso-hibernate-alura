@@ -1,7 +1,7 @@
 package br.com.alura.loja.modelo;
 
-import javax.persistence.Embeddable;
 import java.io.Serializable;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class CategoriaId implements Serializable {
